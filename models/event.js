@@ -73,11 +73,19 @@ class Event {
             // RECUPERO ID DALLA RICHIESTA
             // const eventId = req.params.id;
             // RECUPERO L EVENT DAL DB
-            const event = dbParse.find(event => event.id == eventId);
 
-            const eventJson = JSON.stringify(event);
+            if(eventId == "all"){
+                const all = JSON.stringify(dbParse);
+                return all;
+            } else{
 
-            return eventJson
+                const event = dbParse.find(event => event.id == eventId);
+
+                const eventJson = JSON.stringify(event);
+    
+                return eventJson
+
+            }
 
         } catch (err){
             console.log(err.message)
