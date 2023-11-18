@@ -17,7 +17,8 @@ function store (req, res) {
 };
 
 function update (req, res) {
-    const id = Event.getId()
+    const eventId = req.params.id;
+    const id = Event.getId(eventId)
     res.send(id)
 };
 

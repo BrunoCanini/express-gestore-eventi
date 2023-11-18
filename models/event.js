@@ -60,9 +60,31 @@ class Event {
         }
     }
 
-    static getId(){
+    static getId(eventId){
         // lettura db
         // ciclo il mio db se metto un if(id=)
+        const dbPath = path.join(__dirname, "..", "db", "db.json");
+
+        try{
+            const db = fs.readFileSync(dbPath, "utf-8");
+            
+            const dbParse = JSON.parse(db);
+
+            // RECUPERO ID DALLA RICHIESTA
+            // const eventId = req.params.id;
+            // RECUPERO L EVENT DAL DB
+            const event = dbParse.find(event => event.id == eventId);
+
+            const eventJson = JSON.stringify(event);
+
+            return eventJson
+
+        } catch (err){
+            console.log(err.message)
+
+            return [];
+        }
+
     }
 
 }
